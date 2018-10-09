@@ -1,7 +1,7 @@
 {
   "name": "line-location-shop",
   "scripts": {
-     "dev": "nuxt",
+    "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "heroku-postbuild": "npm run build"
@@ -9,6 +9,7 @@
   "dependencies": {
     "@line/bot-sdk": "6.3.0",
     "@nuxtjs/axios": "5.3.3",
+    "dotenv": "6.1.0",
     "express": "4.16.3",
     "nuxt": "2.1.0"
   }
