@@ -1,0 +1,12 @@
+{
+  "name": "line-location-shop",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "@line/bot-sdk": "6.3.0",
+    "@nuxtjs/axios": "5.3.3",
+    "express": "4.16.3",
+    "nuxt": "2.1.0"
+  }
+}
