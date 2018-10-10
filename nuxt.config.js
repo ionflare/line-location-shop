@@ -40,18 +40,69 @@ module.exports = {
     //{ path: '/api2', handler: '~/api2/index.js' }
       '~/api'
   ],
-    modules: [
+  
+  head: {
+  title: 'Line Loaction',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'line booking app using nuxt' }
+    ],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel:  'stylesheet', href:'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'}
+    ]
+  },
+  
+  
+  
+  
+  
+  modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
     //'@nuxtjs/vuetify',
     //'@nuxtjs/font-awesome'
   ],
+  
+     css: [
+    'vuetify/src/stylus/main.styl'
+  ],
+
+  
+  
+  plugins: [],
+  css:[
+    ],
+  loading: { color: '#FFFFFF' },
+  
+  
+  modules: [
+    // Doc: https://github.com/nuxt-community/axios-module#usage
+    '@nuxtjs/vuetify',
+   
+  ],
+  
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
     baseURL: 'https://3c9df73438794ae49a6a317ae2eeb187.vfs.cloud9.ap-southeast-1.amazonaws.com'
   },
+  
+   vuetify:{
+    theme: {
+    primary: '#3f51b5',
+    secondary: '#b0bec5',
+    accent: '#8c9eff',
+    error: '#b71c1c'
+    }    
+  },
+  
+  
+  
+  
+  
    build: {
-    vendor:['axios'],
+  vendor:['axios', 'vuetify'],
     /*
     ** Run ESLint on save
     */
