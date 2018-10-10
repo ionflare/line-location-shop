@@ -123,11 +123,11 @@ function handleEvent(event) {
       
      //var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
         let R = 6371; // Radius of the earth in km
-            let dLat = deg2rad(shops[0].latitude - event.message.latitude);  // deg2rad below
-            let dLon = deg2rad(shops[0].longtitude - event.message.longitude); 
+            let dLat = deg2rad(shops[0].latitude - parseFloat(event.message.latitude));  // deg2rad below
+            let dLon = deg2rad(shops[0].longtitude - parseFloat(event.message.longitude)); 
             let a = 
             Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(event.message.latitude)) * Math.cos(deg2rad(shops[0].latitude)) * 
+            Math.cos(deg2rad(parseFloat(event.message.latitude))) * Math.cos(deg2rad(shops[0].latitude)) * 
             Math.sin(dLon/2) * Math.sin(dLon/2); 
             let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
             let d = R * c; 
