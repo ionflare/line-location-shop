@@ -70,18 +70,36 @@ function handleEvent(event) {
     
       return Promise.resolve(null);
   }
+  
+  
+  if(event.message.type == 'location')
+  {
+      
+     var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
+  
+    
+     return client.replyMessage(event.replyToken,  { type: 'text', text: ss});
+  }
+  
+  if(event.message.type == 'text')
+  {
+    client.replyMessage(event.replyToken,  { type: 'text', text: "ERROR : Input message is not text or location." });
+    
+     return client.replyMessage(event.replyToken,  { type: 'text', text: "test txt" });
+  }
+  
+  
+  
   /*
    await clientBot.pushMessage(token_response.id_token.sub,{
         type:'text',
         text:"อิอิ"
      })
   */
+ 
   
   
-  
-  
-  
-   return client.replyMessage(event.replyToken,  { type: 'text', text: "一番の近い店舗は" + shops[0].name });
+   
   
  
  
@@ -146,7 +164,84 @@ function handleEvent(event) {
   
 }
 
+function CalDistanceKm(inputArrayLocation,userLa,userLong) {
 
+
+        let res  ="";
+       for(var idx =0; idx<inputArrayLocation.length; idx++ )
+        {    let R = 6371; // Radius of the earth in km
+            let dLat = deg2rad(inputArrayLocation[idx].latitude - userLa);  // deg2rad below
+            let dLon = deg2rad(inputArrayLocation[idx].longtitude - userLong); 
+            let a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(userLa)) * Math.cos(deg2rad(inputArrayLocation[idx].latitude)) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2); 
+            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            let d = R * c; 
+            if(d < 1000)
+            {
+             res = res + inputArrayLocation[idx].name +", d : " + d +"km . "; 
+            }
+        }
+        if(res == "")
+        {
+           res = "No Location was set within 1,000km radius."
+        }
+        
+        return res;
+
+/*
+   return new Promise( ( resolve, reject ) => {
+       
+       let res  ="";
+       for(var idx =0; idx<inputArrayLocation.length; idx++ )
+        {    let R = 6371; // Radius of the earth in km
+            let dLat = deg2rad(inputArrayLocation[idx].latitude - userLa);  // deg2rad below
+            let dLon = deg2rad(inputArrayLocation[idx].longtitude - userLong); 
+            let a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(userLa)) * Math.cos(deg2rad(inputArrayLocation[idx].latitude)) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2); 
+            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            let d = R * c; 
+            if(d < 1000)
+            {
+             res = res + inputArrayLocation[idx].name +", d : " + d +"km . "; 
+            }
+        }
+        if(res == "")
+        {
+           res = "No Location was set within 1,000km radius."
+        }
+     
+         resolve(res);
+  } );
+  
+ */
+}
+
+
+
+
+
+
+
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2); 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 
 const shops = [
           { name    : '一番ラーメン', 
