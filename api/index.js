@@ -121,11 +121,21 @@ function handleEvent(event) {
   if(event.message.type == 'location')
   {
       
-     var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
-  
+     //var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
+        let R = 6371; // Radius of the earth in km
+            let dLat = deg2rad(shops[0].latitude - event.message.latitude);  // deg2rad below
+            let dLon = deg2rad(shops[0].longtitude - event.message.longitude); 
+            let a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(event.message.latitude)) * Math.cos(deg2rad(shops[0].latitude)) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2); 
+            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+            let d = R * c; 
+            
+
     
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
-     + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
+     + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +d});
   }
   
   if(event.message.type == 'text')
