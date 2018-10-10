@@ -128,14 +128,55 @@ function handleEvent(event) {
      + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
     */
     return client.replyMessage(event.replyToken,  { type: 'text', text: ss});
-
+   
+   
   }
   
   if(event.message.type == 'text')
   {
-     client.replyMessage(event.replyToken,  { type: 'text', text: "ERROR : Input message is not text or location." });
-    
-     return client.replyMessage(event.replyToken,  { type: 'text', text: "test txt" });
+      return    client.replyMessage(event.replyToken, 
+      {
+        "type": "template",
+          "altText": "this is a carousel template",
+          "template": {
+              "type": "carousel",
+              "columns": [
+                  {
+                    "thumbnailImageUrl": "https://example.com/bot/images/item1.jpg",
+            "imageBackgroundColor": "#FFFFFF",
+            "title": "this is test menu",
+            "text": "test description",
+            "defaultAction": {
+                "type": "uri",
+                "label": "View detail",
+                "uri": "http://example.com/page/123"
+            },
+            "actions": [
+                {
+                      "type": "uri",
+                    "label": "Open QR Code reader",
+                    "uri": "line://nv/QRCodeReader"
+               
+                },
+                {
+                     "type": "uri",
+                    "label": "Liff",
+                    "uri": "line://app/1550488155-bE5G4nVY"
+                },
+                {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "https://test-liff-1.herokuapp.com"
+                }
+            ]
+          },
+         
+        ],
+              "imageAspectRatio": "rectangle",
+              "imageSize": "cover"
+          }
+         }
+         );
   }
   
   
@@ -239,36 +280,7 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
         }
         
         return res;
-        
-
-/*
-   return new Promise( ( resolve, reject ) => {
-       
-       let res  ="";
-       for(var idx =0; idx<inputArrayLocation.length; idx++ )
-        {    let R = 6371; // Radius of the earth in km
-            let dLat = deg2rad(inputArrayLocation[idx].latitude - userLa);  // deg2rad below
-            let dLon = deg2rad(inputArrayLocation[idx].longtitude - userLong); 
-            let a = 
-            Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(userLa)) * Math.cos(deg2rad(inputArrayLocation[idx].latitude)) * 
-            Math.sin(dLon/2) * Math.sin(dLon/2); 
-            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-            let d = R * c; 
-            if(d < 1000)
-            {
-             res = res + inputArrayLocation[idx].name +", d : " + d +"km . "; 
-            }
-        }
-        if(res == "")
-        {
-           res = "No Location was set within 1,000km radius."
-        }
-     
-         resolve(res);
-  } );
-  
- */
+    
 }
 
 
