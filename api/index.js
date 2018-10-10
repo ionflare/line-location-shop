@@ -26,6 +26,52 @@ const client = new line.Client(config);
 // about Express itself: https://expressjs.com/
 const app = express();
 
+const shops = [
+          { name    : '一番ラーメン', 
+            thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
+            address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
+            latitude : 43.063827,
+            longitude : 141.354205,
+            price   : 5000 ,
+            rate    : 5
+          },
+           { name    : 'KFC', 
+            thumbnail   :  'https://pbs.twimg.com/profile_images/925714187023663104/YPFF21Lu_400x400.jpg',
+            address : '〒112-0014 東京都文京区関口１丁目４７−12',
+            latitude : 35.709947, 
+            longitude : 139.731722,
+            price   : 3000,
+            rate    : 4
+          },
+           { name    : "McDonald's", 
+            thumbnail   :  'https://f.ptcdn.info/369/024/000/1413031329-Mcdonalds9-o.png',
+            address : '〒781-5233 高知県香南市野市町大谷７３８',
+            latitude : 33.570272,
+            longitude :  133.707993,
+            price   : 1500,
+            rate    : 3
+          },
+           { name    : 'SubWay', 
+            thumbnail   :  'https://pbs.twimg.com/profile_images/881641760643923969/wsI1fGIn_400x400.jpg',
+            address : '〒860-0845 熊本県熊本市中央区上通町２−３',
+            latitude : 32.803672, 
+            longitude : 130.711610,
+            price   : 1000,
+            rate    : 2
+          },
+           { name    : 'Pizza Hut', 
+            thumbnail   :  'https://upload.wikimedia.org/wikipedia/th/3/3a/Pizza_Hut.png',
+            address : '〒905-1504 沖縄県国頭郡国頭村安波',
+            latitude : 26.729049, 
+            longitude : 128.296591,
+            price   : 500,
+            rate    : 1
+          },
+      ];
+
+
+
+
 
 app.get('/webhook', async(req,res)=>{
     
@@ -75,15 +121,16 @@ function handleEvent(event) {
   if(event.message.type == 'location')
   {
       
-     var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
+     //var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
   
     
-     return client.replyMessage(event.replyToken,  { type: 'text', text: ss});
+     return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
+     + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude });
   }
   
   if(event.message.type == 'text')
   {
-    client.replyMessage(event.replyToken,  { type: 'text', text: "ERROR : Input message is not text or location." });
+     client.replyMessage(event.replyToken,  { type: 'text', text: "ERROR : Input message is not text or location." });
     
      return client.replyMessage(event.replyToken,  { type: 'text', text: "test txt" });
   }
@@ -242,50 +289,6 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-
-const shops = [
-          { name    : '一番ラーメン', 
-            thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
-            address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
-            latitude : 43.063827,
-            longitude : 141.354205,
-            price   : 5000 ,
-            rate    : 5
-          },
-           { name    : 'KFC', 
-            thumbnail   :  'https://pbs.twimg.com/profile_images/925714187023663104/YPFF21Lu_400x400.jpg',
-            address : '〒112-0014 東京都文京区関口１丁目４７−12',
-            latitude : 35.709947, 
-            longitude : 139.731722,
-            price   : 3000,
-            rate    : 4
-          },
-           { name    : "McDonald's", 
-            thumbnail   :  'https://f.ptcdn.info/369/024/000/1413031329-Mcdonalds9-o.png',
-            address : '〒781-5233 高知県香南市野市町大谷７３８',
-            latitude : 33.570272,
-            longitude :  133.707993,
-            price   : 1500,
-            rate    : 3
-          },
-           { name    : 'SubWay', 
-            thumbnail   :  'https://pbs.twimg.com/profile_images/881641760643923969/wsI1fGIn_400x400.jpg',
-            address : '〒860-0845 熊本県熊本市中央区上通町２−３',
-            latitude : 32.803672, 
-            longitude : 130.711610,
-            price   : 1000,
-            rate    : 2
-          },
-           { name    : 'Pizza Hut', 
-            thumbnail   :  'https://upload.wikimedia.org/wikipedia/th/3/3a/Pizza_Hut.png',
-            address : '〒905-1504 沖縄県国頭郡国頭村安波',
-            latitude : 26.729049, 
-            longitude : 128.296591,
-            price   : 500,
-            rate    : 1
-          },
-      ];
-
 
 
 
