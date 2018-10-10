@@ -139,7 +139,7 @@
         dark
       >
         <v-toolbar-side-icon></v-toolbar-side-icon>
-        <v-toolbar-title>店舗情報 {{shops[0].name}}</v-toolbar-title>
+        <v-toolbar-title>店舗情報</v-toolbar-title>
         <v-spacer></v-spacer>
     
       </v-toolbar>
