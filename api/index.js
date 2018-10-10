@@ -121,21 +121,14 @@ function handleEvent(event) {
   if(event.message.type == 'location')
   {
       
-     //var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
-        let R = 6371; // Radius of the earth in km
-            let dLat = deg2rad(shops[0].latitude - parseFloat(event.message.latitude));  // deg2rad below
-            let dLon = deg2rad(shops[0].longtitude - parseFloat(event.message.longitude)); 
-            let a = 
-            Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(parseFloat(event.message.latitude))) * Math.cos(deg2rad(shops[0].latitude)) * 
-            Math.sin(dLon/2) * Math.sin(dLon/2); 
-            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-            let d = R * c; 
-            
-
-    
+     var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
+  
+    /*
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
-     + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +d});
+     + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
+    */
+    return client.replyMessage(event.replyToken,  { type: 'text', text: ss});
+
   }
   
   if(event.message.type == 'text')
@@ -223,24 +216,12 @@ function handleEvent(event) {
 
 function CalDistanceKm(inputArrayLocation,userLa,userLong) {
 
-           let R = 6371; // Radius of the earth in km
-            let dLat = deg2rad(inputArrayLocation[0].latitude - userLa);  // deg2rad below
-            let dLon = deg2rad(inputArrayLocation[0].longtitude - userLong); 
-            let a = 
-            Math.sin(dLat/2) * Math.sin(dLat/2) +
-            Math.cos(deg2rad(userLa)) * Math.cos(deg2rad(inputArrayLocation[0].latitude)) * 
-            Math.sin(dLon/2) * Math.sin(dLon/2); 
-            let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-            let d = R * c; 
-            return d;
 
-
-        /*    
         let res  ="";
        for(var idx =0; idx<inputArrayLocation.length; idx++ )
         {    let R = 6371; // Radius of the earth in km
             let dLat = deg2rad(inputArrayLocation[idx].latitude - userLa);  // deg2rad below
-            let dLon = deg2rad(inputArrayLocation[idx].longtitude - userLong); 
+            let dLon = deg2rad(inputArrayLocation[idx].longitude - userLong); 
             let a = 
             Math.sin(dLat/2) * Math.sin(dLat/2) +
             Math.cos(deg2rad(userLa)) * Math.cos(deg2rad(inputArrayLocation[idx].latitude)) * 
@@ -258,7 +239,7 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
         }
         
         return res;
-        */
+        
 
 /*
    return new Promise( ( resolve, reject ) => {
