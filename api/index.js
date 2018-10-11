@@ -127,8 +127,20 @@ function handleEvent(event) {
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
      + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
     */
-    return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name +  " -" + ss[0].distance  });
-   
+    //return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name +  " -" + ss[0].distance  });
+   return    client.replyMessage(event.replyToken, 
+      {
+        "type": "template",
+          "altText": "this is a carousel template",
+          "template": {
+          "type": "carousel",
+          "columns":  genCorusel(ss),
+          
+              "imageAspectRatio": "rectangle",
+              "imageSize": "cover"
+          }
+         }
+         );
    
   }
   
@@ -302,11 +314,49 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-/*
-function genCorusel() {
-  return deg * (Math.PI/180)
+
+function genCorusel(inputArray) {
+    
+    let col = [];
+      for(var idx =0; idx<inputArray.length; idx++ )
+        {   
+            col.push(
+                 {
+                    "thumbnailImageUrl": inputArray[idx].thumbnail,
+                    "imageBackgroundColor": "#FFFFFF",
+                    "title": inputArray[idx].name,
+                    "text":  "距離 : " + inputArray[idx].distance,
+                    "defaultAction": {
+                    "type": "uri",
+                    "label": "View detail",
+                    "uri": "http://example.com/page/123"
+                    },
+                    "actions": [
+                        {
+                              "type": "uri",
+                            "label": "Open QR Code reader",
+                            "uri": "line://nv/QRCodeReader"
+                       
+                        },
+                        {
+                             "type": "uri",
+                            "label": "Liff",
+                            "uri": "line://app/1550488155-bE5G4nVY"
+                        },
+                        {
+                            "type": "uri",
+                            "label": "View detail",
+                            "uri": "https://test-liff-1.herokuapp.com"
+                        }
+                    ]
+                  }
+                
+                );
+        }
+    return col;
+ 
 }
-*/
+
 
 
 module.exports = {
