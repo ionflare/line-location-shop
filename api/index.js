@@ -27,15 +27,7 @@ const client = new line.Client(config);
 const app = express();
 
 const shops = [
-          { //name    : '一番ラーメン', 
-            name    : 'ichiban ramen', 
-            thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
-            address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
-            latitude : 43.063827,
-            longitude : 141.354205,
-            price   : 5000 ,
-            rate    : 5
-          },
+         
            { name    : 'KFC', 
             thumbnail   :  'https://pbs.twimg.com/profile_images/925714187023663104/YPFF21Lu_400x400.jpg',
             address : '〒112-0014 東京都文京区関口１丁目４７−12',
@@ -67,6 +59,14 @@ const shops = [
             longitude : 128.296591,
             price   : 500,
             rate    : 1
+          },
+           { name    : '一番ラーメン', 
+            thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
+            address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
+            latitude : 43.063827,
+            longitude : 141.354205,
+            price   : 5000,
+            rate    : 5
           },
       ];
 
@@ -346,10 +346,16 @@ function genCorusel(inputArray) {
                     "uri": "http://example.com/page/123"
                     },
                     "actions": [
+                         {
+                            "type": "uri",
+                            "label": "詳細",
+                            "uri": "https://line-location-shop.herokuapp.com/"
+                       
+                        },
                         {
                             "type": "uri",
                             "label": "予約",
-                            "uri": "line://nv/QRCodeReader"
+                            "uri": "https://line-location-shop.herokuapp.com/"
                        
                         }
                     ]
