@@ -272,7 +272,7 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
             if(d < 1000)
             {
                 
-                //[idx].push({distance : d});
+                inputArrayLocation[idx].push({distance : d});
                 res.push(inputArrayLocation[idx]);
             }
         }
