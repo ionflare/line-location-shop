@@ -107,6 +107,7 @@
       -->
       
     </v-toolbar>
+  
     <v-content>
       <v-container fluid fill-height>
         <v-layout justify-center align-center>
@@ -125,9 +126,7 @@
             <span>Source</span>
           </v-tooltip>
           -->
-          
-          
-          
+    
           
     <div
       id="e3"
@@ -147,16 +146,16 @@
       <v-card>
         <v-container
           fluid
-          grid-list-lg
+          grid-list-md
         >
           <v-layout row wrap>
      
               
           
-            <v-flex xs6 v-for="shop in shops">
+            <v-flex xs12 md6 v-for="shop in shops">
               <v-card color="purple" class="white--text">
                 <v-layout row>
-                  <v-flex xs7>
+                  <v-flex xs12>
                     <v-card-title primary-title>
                       <div>
                         <div class="headline">{{ genShopName(shop.name) }}</div>
@@ -186,37 +185,66 @@
               </v-card>
             </v-flex>
             
-         
-            
-            
-            
+  
           </v-layout>
         </v-container>
       </v-card>
     </div>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+
         </v-layout>
       </v-container>
     </v-content>
+    
+    
+    
+    
+    <v-content>
+    <v-container fluid fill-height>
+        <v-layout justify-center align-center>
+          <div
+      
+      style="maxwidth: 1200px; margin: auto;"
+      class="grey lighten-3"
+    >
+      <v-toolbar
+        color="pink"
+        dark
+      >
+        <v-toolbar-side-icon></v-toolbar-side-icon>
+        <v-toolbar-title>地図</v-toolbar-title>
+        <v-spacer></v-spacer>
+    
+      </v-toolbar>
+  
+      <v-card>
+        <v-container
+          fluid
+          grid-list-md
+        >
+          <v-layout row wrap>
+
+            <v-flex xs12 md6>
+             
+                    <img src="https://www.picz.in.th/images/2018/10/11/kulEiz.jpg">  
+              
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </div>
+    
+    
+    
+        </v-layout> 
+     </v-container>
+     </v-content>
+    
+    
+    
+    
+    
+    
+    
     <v-btn
       fab
       bottom

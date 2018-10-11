@@ -60,8 +60,12 @@ const shops = [
             price   : 500,
             rate    : 1
           },
-           { name    : '一番ラーメン', 
-            thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
+           {
+            //name    : '一番ラーメン', 
+            //thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
+            name    : 'Pizza Hut', 
+            thumbnail   :  'https://upload.wikimedia.org/wikipedia/th/3/3a/Pizza_Hut.png',
+            address : '〒905-1504 沖縄県国頭郡国頭村安波',
             address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
             latitude : 43.063827,
             longitude : 141.354205,
