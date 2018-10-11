@@ -27,7 +27,8 @@ const client = new line.Client(config);
 const app = express();
 
 const shops = [
-          { name    : '一番ラーメン', 
+          { //name    : '一番ラーメン', 
+            name    : 'ichiban ramen', 
             thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
             address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
             latitude : 43.063827,
