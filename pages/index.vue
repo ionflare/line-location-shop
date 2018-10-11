@@ -364,7 +364,7 @@
       
       shops : [
           { name    : '一番ラーメン', 
-            thumbnail   :  'http://www.foodpoi.com/wp-content/uploads/2007/11/ichiban-ramen.JPG',
+            thumbnail   :  'https://images-na.ssl-images-amazon.com/images/I/51S8PMEF8WL.jpg',
             address : '〒060-0001 北海道札幌市中央区北１条西２丁目',
             latitude : 43.063827,
             longitude : 141.354205,
