@@ -127,7 +127,7 @@ function handleEvent(event) {
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
      + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
     */
-    return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name + " "+  ss[0].distance});
+    return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name});
    
    
   }
@@ -272,7 +272,7 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
             if(d < 1000)
             {
                 
-                inputArrayLocation[idx].push({distance : d});
+                //[idx].push({distance : d});
                 res.push(inputArrayLocation[idx]);
             }
         }
@@ -302,11 +302,11 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
-
+/*
 function genCorusel() {
   return deg * (Math.PI/180)
 }
-
+*/
 
 
 module.exports = {
