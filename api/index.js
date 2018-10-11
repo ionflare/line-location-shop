@@ -127,7 +127,7 @@ function handleEvent(event) {
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
      + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
     */
-    return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name});
+    return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name +  " -" + ss[0].distance  });
    
    
   }
