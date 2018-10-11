@@ -175,7 +175,7 @@
                 </v-layout>
                 <v-divider light></v-divider>
                 <v-card-actions class="pa-3">
-                  評判スコア {{testAddArr()}}
+                  評判スコア 
                   <v-spacer></v-spacer>
                   <v-icon>star</v-icon>
                   <v-icon>star</v-icon>

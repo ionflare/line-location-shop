@@ -338,7 +338,7 @@ function genCorusel(inputArray) {
                     "thumbnailImageUrl": inputArray[idx].thumbnail,
                     "imageBackgroundColor": "#FFFFFF",
                     "title": inputArray[idx].name,
-                    "text":  "価格 : "+inputArray[idx].price +"円. 距離 : " + inputArray[idx].distance + "KM",
+                    "text":  "価格 : "+inputArray[idx].price +"円. 住所 : "+inputArray[idx].address +".  距離 : " + inputArray[idx].distance.toFixed(2) + "KM",
                     "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
