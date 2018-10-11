@@ -175,7 +175,7 @@
                 </v-layout>
                 <v-divider light></v-divider>
                 <v-card-actions class="pa-3">
-                  評判スコア
+                  評判スコア {{testAddArr()}}
                   <v-spacer></v-spacer>
                   <v-icon>star</v-icon>
                   <v-icon>star</v-icon>
@@ -377,7 +377,17 @@
           },
           
          
-      ]
+      ],
+      
+      testArr :[{
+        a : "aa",
+        b : "bb"
+      },
+      {
+         a : "aaa",
+         b : "bbb"
+      }
+        ]
     }),
     
     methods :{
@@ -390,7 +400,13 @@
       genPrice : function (inputTxt) {
             return "価格 : "+ inputTxt.toLocaleString('ja-JP', { style: 'currency', currency: 'JPY' }) ;
       }, 
-    
+      
+      testAddArr : function () {
+        
+            //this.testArr[0].push({c : "ccc"});
+            this.testArr[0].c = "cc";
+            return this.testArr[0];
+      }, 
     },
     
     

@@ -271,8 +271,8 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
             let d = R * c; 
             if(d < 1000)
             {
-                
-                inputArrayLocation[idx].push({distance : d});
+                inputArrayLocation[idx].distance = d;
+                //inputArrayLocation[idx].push({distance : d});
                 res.push(inputArrayLocation[idx]);
             }
         }
