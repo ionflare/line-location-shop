@@ -161,49 +161,7 @@ function handleEvent(event) {
   
   if(event.message.type == 'text')
   {
-      return    client.replyMessage(event.replyToken, 
-      {
-        "type": "template",
-          "altText": "this is a carousel template",
-          "template": {
-              "type": "carousel",
-              "columns": [
-                  {
-                    "thumbnailImageUrl": "https://example.com/bot/images/item1.jpg",
-            "imageBackgroundColor": "#FFFFFF",
-            "title": "this is test menu",
-            "text": "test description",
-            "defaultAction": {
-                "type": "uri",
-                "label": "View detail",
-                "uri": "http://example.com/page/123"
-            },
-            "actions": [
-                {
-                      "type": "uri",
-                    "label": "Open QR Code reader",
-                    "uri": "line://nv/QRCodeReader"
-               
-                },
-                {
-                     "type": "uri",
-                    "label": "Liff",
-                    "uri": "line://app/1550488155-bE5G4nVY"
-                },
-                {
-                    "type": "uri",
-                    "label": "View detail",
-                    "uri": "https://test-liff-1.herokuapp.com"
-                }
-            ]
-          },
-         
-        ],
-              "imageAspectRatio": "rectangle",
-              "imageSize": "cover"
-          }
-         }
-         );
+      return client.replyMessage(event.replyToken,  { type: 'text', text:  "Hello World."  });
   }
   
   
