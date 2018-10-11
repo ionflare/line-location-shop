@@ -122,12 +122,12 @@ function handleEvent(event) {
   {
       
      var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
-  
+    
     /*
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
      + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
     */
-    return client.replyMessage(event.replyToken,  { type: 'text', text: ss});
+    return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name + " "+  ss[0].distance});
    
    
   }
@@ -257,8 +257,8 @@ function handleEvent(event) {
 
 function CalDistanceKm(inputArrayLocation,userLa,userLong) {
 
-
-        let res  ="";
+        
+        let res  = [];
        for(var idx =0; idx<inputArrayLocation.length; idx++ )
         {    let R = 6371; // Radius of the earth in km
             let dLat = deg2rad(inputArrayLocation[idx].latitude - userLa);  // deg2rad below
@@ -271,14 +271,11 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
             let d = R * c; 
             if(d < 1000)
             {
-             res = res + inputArrayLocation[idx].name +", d : " + d +"km . "; 
+                
+                inputArrayLocation[idx].push({distance : d});
+                res.push(inputArrayLocation[idx]);
             }
         }
-        if(res == "")
-        {
-           res = "No Location was set within 1,000km radius."
-        }
-        
         return res;
     
 }
@@ -306,7 +303,9 @@ function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
 
-
+function genCorusel() {
+  return deg * (Math.PI/180)
+}
 
 
 
