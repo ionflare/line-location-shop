@@ -121,26 +121,39 @@ function handleEvent(event) {
   if(event.message.type == 'location')
   {
       
-     var ss =  CalDistanceKm(shops , event.message.latitude, event.message.longitude);
+     var shopResult =  CalDistanceKm(shops , event.message.latitude, event.message.longitude, 500);
     
     /*
      return client.replyMessage(event.replyToken,  { type: 'text', text: "la :" + event.message.latitude + " , long :" 
      + event.message.longitude + "shop1 : " + shops[0].latitude + " ... long : " + shops[0].longitude + " .d :" +ss});
     */
     //return client.replyMessage(event.replyToken,  { type: 'text', text:  ss[0].name +  " -" + ss[0].distance  });
-   return    client.replyMessage(event.replyToken, 
+    
+    
+    if(shopResult.length > 0)
+    {
+         return    client.replyMessage(event.replyToken, 
       {
         "type": "template",
-          "altText": "this is a carousel template",
+          "altText": "結果",
           "template": {
           "type": "carousel",
-          "columns":  genCorusel(ss),
+          "columns":  genCorusel(shopResult),
           
               "imageAspectRatio": "rectangle",
               "imageSize": "cover"
           }
          }
          );
+        
+    }
+    else
+    {
+        return client.replyMessage(event.replyToken,  { type: 'text', text:  "500KM 以内店がありません。"  });
+    }
+    
+    
+  
    
   }
   
@@ -267,7 +280,7 @@ function handleEvent(event) {
   
 }
 
-function CalDistanceKm(inputArrayLocation,userLa,userLong) {
+function CalDistanceKm(inputArrayLocation,userLa,userLong, maxDis) {
 
         
         let res  = [];
@@ -281,7 +294,7 @@ function CalDistanceKm(inputArrayLocation,userLa,userLong) {
             Math.sin(dLon/2) * Math.sin(dLon/2); 
             let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
             let d = R * c; 
-            if(d < 1000)
+            if(d < maxDis)
             {
                 inputArrayLocation[idx].distance = d;
                 //inputArrayLocation[idx].push({distance : d});
@@ -325,7 +338,7 @@ function genCorusel(inputArray) {
                     "thumbnailImageUrl": inputArray[idx].thumbnail,
                     "imageBackgroundColor": "#FFFFFF",
                     "title": inputArray[idx].name,
-                    "text":  "距離 : " + inputArray[idx].distance,
+                    "text":  "価格 : "+inputArray[idx].price +"円. 距離 : " + inputArray[idx].distance + "KM",
                     "defaultAction": {
                     "type": "uri",
                     "label": "View detail",
@@ -333,20 +346,10 @@ function genCorusel(inputArray) {
                     },
                     "actions": [
                         {
-                              "type": "uri",
-                            "label": "Open QR Code reader",
+                            "type": "uri",
+                            "label": "予約",
                             "uri": "line://nv/QRCodeReader"
                        
-                        },
-                        {
-                             "type": "uri",
-                            "label": "Liff",
-                            "uri": "line://app/1550488155-bE5G4nVY"
-                        },
-                        {
-                            "type": "uri",
-                            "label": "View detail",
-                            "uri": "https://test-liff-1.herokuapp.com"
                         }
                     ]
                   }
